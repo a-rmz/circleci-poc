@@ -35,8 +35,8 @@ workflows:
     jobs:
       - lint
       - unit-test:
-        requires:
-          - lint
+          requires:
+            - lint
       - build:
-        requires:
-          - unit-test
+          requires:
+            - unit-test
