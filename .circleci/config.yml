@@ -8,6 +8,7 @@ jobs:
     <<: *defaults
     machine: true
     steps:
+      - checkout
       - run: docker build -t circleci-poc-lint --file=~/app/devops/lint/Dockerfile ~/app/devops/lint
       - run: docker run circleci-poc-lint
       - run: echo "lint step"
@@ -15,6 +16,7 @@ jobs:
     <<: *defaults
     machine: true
     steps:
+      - checkout
       - run: docker build -t circleci-poc-unit-test --file=~/app/devops/unit-test/Dockerfile ~/app/devops/unit-test
       - run: docker run circleci-poc-unit-test
       - run: echo "unit test step"
@@ -22,6 +24,7 @@ jobs:
     <<: *defaults
     machine: true
     steps:
+      - checkout
       - run: docker build -t circleci-poc-build --file=~/app/devops/build/Dockerfile ~/app/devops/build
       - run: docker run circleci-poc-build
       - run: echo "build step"
