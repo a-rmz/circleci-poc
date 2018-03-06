@@ -28,7 +28,8 @@ jobs:
       - run: docker build -t circleci-poc-build --file=./devops/build/Dockerfile ~/app/devops/build
       - run: docker run circleci-poc-build
       - run: echo "build step"
-workflow:
+
+workflows:
   version: 2
   ci-flow:
     jobs:
