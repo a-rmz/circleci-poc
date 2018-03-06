@@ -1,0 +1,35 @@
+version: 2
+jobs:
+  build-images:
+    machine: true
+    steps:
+      - run: docker build -t circleci-poc-lint --file=./devops/lint/Dockerfile ./devops/lint
+      - run: docker build -t circleci-poc-unit-test --file=./devops/unit-test/Dockerfile ./devops/unit-test
+      - run: docker build -t circleci-poc-build --file=./devops/build/Dockerfile ./devops/build
+  lint:
+    docker:
+      - image: circleci-poc-lint:latest
+    steps:
+      - checkout
+      - run: echo "lint step"
+  unit-test:
+    docker:
+      - image: circleci-poc-unit-test:latest
+    steps:
+      - checkout
+      - run: echo "unit test step"
+  build:
+    docker:
+      - image: circleci-poc-build:latest
+    steps:
+      - checkout
+      - run: echo "build step"
+workflow:
+  version: 2
+  ci-flow:
+    jobs:
+      - build-images
+      - lint
+      - unit-test
+      - build
+
