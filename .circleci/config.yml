@@ -33,6 +33,9 @@ workflow:
   ci-flow:
     jobs:
       - lint
-      - unit-test
-      - build
-
+      - unit-test:
+        requires:
+          - lint
+      - build:
+        requires:
+          - unit-test
