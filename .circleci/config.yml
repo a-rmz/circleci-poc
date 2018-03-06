@@ -40,3 +40,9 @@ workflows:
       - build:
           requires:
             - unit-test
+  test-build-flow:
+    jobs:
+      - unit-test
+      - build:
+          requires:
+            - unit-test
